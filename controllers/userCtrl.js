@@ -1,5 +1,6 @@
 const Users = require("../models/userModel");
 const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 
 const userCtrl = {
   register: async (req, res) => {
@@ -29,11 +30,47 @@ const userCtrl = {
       // save in mongodb
       await newUser.save();
 
-      res.json({ msg: "user registered" });
+      // create jsonwebtoken
+      const accesstoken = createAccessToken({ id: newUser._id });
+      const refreshtoken = createRefreshToken({ id: newUser._id });
+
+      res.cookie("refreshtoken", refreshtoken, {
+        httpOnly: true,
+        path: "/user/refresh_token",
+      });
+
+      //   res.json({ msg: "user registered" });
+      res.json({ accesstoken });
     } catch (err) {
       return res.status(500).json({ mgs: err.message });
     }
   },
+  refreshToken: (req, res) => {
+    try {
+      const rf_token = req.cookies.refreshtoken;
+      if (!rf_token)
+        return res.status(400).json({ msg: "Please Login or Register" });
+
+      jwt.verify(rf_token, process.env.REFRESH_TOKEN_SECRET, (err, user) => {
+        if (err)
+          return res.status(400).json({ msg: "Please Login or Register" });
+
+        const accesstoken = createAccessToken({ id: user.id });
+        res.json({ accesstoken });
+      });
+    } catch (err) {
+      return res.status(500).json({ msg: err.message });
+    }
+    res.json({ rf_token });
+    // res.json({ msg: "hello" });
+  },
+};
+
+const createAccessToken = (user) => {
+  return jwt.sign(user, process.env.ACCESS_TOKEN_SECRET, { expiresIn: "1d" });
+};
+const createRefreshToken = (user) => {
+  return jwt.sign(user, process.env.REFRESH_TOKEN_SECRET, { expiresIn: "7d" });
 };
 
 module.exports = userCtrl;
