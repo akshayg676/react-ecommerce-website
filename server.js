@@ -15,6 +15,9 @@ app.use(
   })
 );
 
+// Routes
+app.use("/user", require("./routers/userRouter.js"));
+
 // Connect to mongodb
 const URI = process.env.MONGODB_URI;
 mongoose.connect(
@@ -30,10 +33,6 @@ mongoose.connect(
     console.log("Connected to MongoDB");
   }
 );
-
-app.get("/", (req, res) => {
-  res.json({ msg: "Welcome" });
-});
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
