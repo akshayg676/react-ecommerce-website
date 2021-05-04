@@ -3,6 +3,7 @@ const cloudinary = require("cloudinary");
 const auth = require("../middleware/auth");
 const authAdmin = require("../middleware/authAdmin");
 const fs = require("fs");
+const { route } = require("./userRouter");
 
 // upload image on cloudinary
 cloudinary.config({
@@ -11,8 +12,8 @@ cloudinary.config({
   api_secret: process.env.CLOUD_API_SECRET,
 });
 
-//upload image
-router.post("/upload", (req, res) => {
+//upload image (only by admin)
+router.post("/upload", auth, authAdmin, (req, res) => {
   try {
     console.log(req.files);
     if (!req.files || Object.keys(req.files).length === 0)
@@ -40,6 +41,20 @@ router.post("/upload", (req, res) => {
     );
   } catch (err) {
     res.status(500).json({ msg: err.message });
+  }
+});
+
+// Delete image (only by admin)
+router.post("/destroy", auth, authAdmin, (req, res) => {
+  try {
+    const { public_id } = req.body;
+    if (!public_id) return res.status(400).json({ msg: "No image selected" });
+    cloudinary.v2.uploader.destroy(public_id, async (err, result) => {
+      if (err) throw err;
+      res.json("Image deleted");
+    });
+  } catch (err) {
+    return res.status(500).json({ msg: err.message });
   }
 });
 
