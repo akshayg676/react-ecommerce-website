@@ -15,7 +15,7 @@ code {
 }
 /* -------------------------- App -------------------------- */
 .App {
-  max-width: 100%; /*1230px*/
+  max-width: 1230px; /*1230px*/
   min-height: 100vh;
   margin: 0 auto;
   padding: 0 20px;
@@ -43,3 +43,6 @@ button {
 
 /* -------------------------- Product -------------------------- */
 @import url("./components/mainpages/products/products.css");
+
+/* -------------------------- Detail Product -------------------------- */
+@import url("./components/mainpages/detailProduct/detailProduct.css");
