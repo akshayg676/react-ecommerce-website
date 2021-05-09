@@ -1,0 +1,62 @@
+.login-page {
+  max-width: 500px;
+  border: 2px solid limegreen;
+  border-radius: 20px;
+  padding: 2rem;
+  margin: 3.5rem auto;
+}
+
+.login-page h2 {
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: #555;
+  padding-bottom: 1.5rem;
+}
+.login-page input,
+.login-page button {
+  width: 100%;
+  margin: 10px 0;
+  height: 2.5rem;
+  padding: 0 5px;
+  outline: limegreen;
+  border: 1px solid limegreen;
+
+  border-radius: 20px;
+  background: transparent;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.7),
+    -5px -5px 10px rgba(255, 255, 255, 0.1);
+}
+.login-page input:focus,
+.login-page button:focus {
+  box-shadow: inset 5px 5px 10px rgba(0, 0, 0, 0.7),
+    inset -5px -5px 10px rgba(255, 255, 255, 0.1);
+}
+
+.login-page form .row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 1.5rem;
+}
+.login-page form button {
+  max-width: 150px;
+  color: #ffffff;
+  background-color: limegreen;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.login-page form a {
+  color: orange;
+  letter-spacing: 1.3px;
+  text-transform: uppercase;
+}
+
+/* box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.7),
+    -5px -5px 10px rgba(255, 255, 255, 0.1);
+}
+
+.login-page form button:focus {
+  box-shadow: inset 5px 5px 10px rgba(0, 0, 0, 0.7),
+    inset -5px -5px 10px rgba(255, 255, 255, 0.1);
+} */
