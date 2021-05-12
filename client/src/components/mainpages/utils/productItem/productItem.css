@@ -59,3 +59,8 @@
   background-color: limegreen;
   margin-left: 5px;
 }
+.product_card input {
+  position: absolute;
+  height: 25px;
+  width: 25px;
+}
