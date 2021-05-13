@@ -1,0 +1,58 @@
+.cart_div {
+  padding-bottom: 20rem;
+}
+
+.detail {
+  position: relative;
+  border: 1px solid #ccc;
+  box-shadow: 5px 10px #888888;
+  /* transform: scaleY(0.98); */
+  margin: 1rem;
+  /* max-height: 20rem; */
+}
+
+.amount span {
+  color: crimson;
+  padding: 0 2rem;
+}
+
+.amount button {
+  width: 2.5rem;
+  height: 2.5rem;
+  border: 1px solid #777;
+}
+
+.delete button {
+  position: absolute;
+  top: 0;
+  right: 5px;
+  color: red;
+  font-weight: 500;
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+.total {
+  /* width: 100%; */
+  /* height: 50px; */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.2rem;
+}
+
+.total h3 {
+  width: 50%;
+  text-align: center;
+  text-transform: uppercase;
+  color: #000;
+  font-weight: 600;
+  letter-spacing: 2px;
+  padding: 6px;
+  background-color: seashell;
+  border: 1px solid limegreen;
+  margin: 1rem;
+}
+.total .payment {
+  background-color: lightgreen;
+}
