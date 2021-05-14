@@ -4,7 +4,7 @@ import { GlobalState } from "../../../GlobalState";
 
 function Cart() {
   const state = useContext(GlobalState);
-  const [cart] = state.userAPI.cart;
+  const [cart, setCart] = state.userAPI.cart;
   const [total, setTotal] = useState(0);
 
   useEffect(() => {
@@ -22,6 +22,26 @@ function Cart() {
       <div style={{ textAlign: "center", fontSize: "5rem" }}>Cart is Empty</div>
     );
 
+  // decrementing product quantity in cart
+  const decrement = (id) => {
+    cart.forEach((item) => {
+      if (item._id === id) {
+        item.quantity === 1 ? (item.quantity = 1) : (item.quantity -= 1);
+      }
+    });
+    setCart([...cart]);
+  };
+
+  // incrementing product quantity in cart
+  const increment = (id) => {
+    cart.forEach((item) => {
+      if (item._id === id) {
+        item.quantity += 1;
+      }
+    });
+    setCart([...cart]);
+  };
+
   return (
     <div className="cart_div">
       {cart.map((product) => (
@@ -35,9 +55,9 @@ function Cart() {
           </div>
 
           <div className="amount">
-            <button> - </button>
+            <button onClick={() => decrement(product._id)}> - </button>
             <span>{product.quantity}</span>
-            <button> + </button>
+            <button onClick={() => increment(product._id)}> + </button>
           </div>
 
           <div className="delete">
