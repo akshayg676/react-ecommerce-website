@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { get } from "mongoose";
 
 function UserAPI(token) {
   const [isLogged, setIsLogged] = useState(false);
@@ -18,7 +17,7 @@ function UserAPI(token) {
           setIsLogged(true);
           res.data.role === 1 ? setIsAdmin(true) : setIsAdmin(false);
 
-          console.log(res);
+          setCart(res.data.cart);
         } catch (err) {
           alert(err.response.data.msg);
         }
@@ -36,7 +35,12 @@ function UserAPI(token) {
 
     if (check) {
       setCart([...cart, { ...product, quantity: 1 }]);
-      console.log(cart);
+
+      await axios.patch(
+        "/user/addcart",
+        { cart: [...cart, { ...product, quantity: 1 }] },
+        { headers: { Authorization: token } }
+      );
     } else alert("Product has been added to cart");
   };
   return {

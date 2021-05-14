@@ -95,7 +95,7 @@ const userCtrl = {
     } catch (err) {
       return res.status(500).json({ msg: err.message });
     }
-    res.json({ rf_token });
+    // res.json({ rf_token });
     // res.json({ msg: "hello" });
   },
   getUser: async (req, res) => {
@@ -103,6 +103,23 @@ const userCtrl = {
       const user = await Users.findById(req.user.id).select("-password");
       if (!user) return res.status(400).json({ msg: "User does not exist" });
       res.json(user);
+    } catch (err) {
+      return res.status(500).json({ msg: err.message });
+    }
+  },
+  addCart: async (req, res) => {
+    try {
+      const user = await Users.findById(req.user.id);
+      if (!user) return res.status(400).json({ msg: "User does not exist." });
+
+      await Users.findOneAndUpdate(
+        { _id: req.user.id },
+        {
+          cart: req.body.cart,
+        }
+      );
+
+      return res.json({ msg: "Added to cart" });
     } catch (err) {
       return res.status(500).json({ msg: err.message });
     }

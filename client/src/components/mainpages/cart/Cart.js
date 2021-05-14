@@ -16,7 +16,7 @@ function Cart() {
     <div className="cart_div">
       {cart.map((product) => (
         <div className="detail cart">
-          <img src={product.image.url} alt="" className="img_container" />
+          <img src={product.image.url} alt="" />
           <div className="box-detail">
             <h2>{product.title}</h2>
             <span>₹ {product.price * product.quantity}</span>
