@@ -42,6 +42,18 @@ function Cart() {
     setCart([...cart]);
   };
 
+  // delete selected product from cart
+  const removeProduct = (id) => {
+    if (window.confirm("Do you want to delete this product")) {
+      cart.forEach((item, index) => {
+        if (item._id === id) {
+          cart.splice(index, 1);
+        }
+      });
+      setCart([...cart]);
+    }
+  };
+
   return (
     <div className="cart_div">
       {cart.map((product) => (
@@ -61,7 +73,7 @@ function Cart() {
           </div>
 
           <div className="delete">
-            <button>X</button>
+            <button onClick={() => removeProduct(product._id)}>X</button>
           </div>
         </div>
       ))}
