@@ -33,8 +33,8 @@
 }
 
 .total {
-  /* width: 100%; */
-  /* height: 50px; */
+  width: 100%;
+  height: 50px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -42,17 +42,8 @@
 }
 
 .total h3 {
-  width: 50%;
-  text-align: center;
-  text-transform: uppercase;
-  color: #000;
-  font-weight: 600;
-  letter-spacing: 2px;
-  padding: 6px;
-  background-color: seashell;
-  border: 1px solid limegreen;
-  margin: 1rem;
+  font-size: 1.8rem;
 }
-.total .payment {
-  background-color: lightgreen;
+.total span {
+  color: crimson;
 }
