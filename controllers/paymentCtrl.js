@@ -31,11 +31,25 @@ const paymentCtrl = {
         address,
       });
 
+      cart.filter((item) => {
+        return sold(item._id, item.quantity, item.sold);
+      });
+
+      await newPayment.save();
       res.json({ newPayment });
     } catch (err) {
       return res.status(500).json({ msg: err.message });
     }
   },
+};
+
+const sold = async (id, quantity, oldSold) => {
+  await Products.findOneAndUpdate(
+    { _id: id },
+    {
+      sold: quantity + oldSold,
+    }
+  );
 };
 
 module.exports = paymentCtrl;
