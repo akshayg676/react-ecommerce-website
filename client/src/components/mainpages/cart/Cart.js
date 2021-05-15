@@ -20,7 +20,7 @@ function Cart() {
     getTotal();
   }, [cart]);
 
-  const addToCart = async () => {
+  const addToCart = async (cart) => {
     await axios.patch(
       "/user/addcart",
       { cart },
@@ -41,7 +41,7 @@ function Cart() {
     );
 
     setCart([]);
-    addToCart();
+    addToCart([]);
     alert("You have successfully placed an order");
   };
 
@@ -58,7 +58,7 @@ function Cart() {
       }
     });
     setCart([...cart]);
-    addToCart();
+    addToCart(cart);
   };
 
   // incrementing product quantity in cart
@@ -69,7 +69,7 @@ function Cart() {
       }
     });
     setCart([...cart]);
-    addToCart();
+    addToCart(cart);
   };
 
   // delete selected product from cart
@@ -81,7 +81,7 @@ function Cart() {
         }
       });
       setCart([...cart]);
-      addToCart();
+      addToCart(cart);
     }
   };
 
