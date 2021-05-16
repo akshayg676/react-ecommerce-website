@@ -19,15 +19,15 @@ function OrderHistory() {
           </tr>
         </thead>
         <tbody>
-          {history.map((item) => {
+          {history.map((item) => (
             <tr key={item._id}>
               <th>{item.paymentID}</th>
               <th>{new Date(item.createdAt).toLocaleDateString()}</th>
               <th>
-                <Link to={"/history/${items._id}"}>View</Link>
+                <Link to={`/history/${item._id}`}>View</Link>
               </th>
-            </tr>;
-          })}
+            </tr>
+          ))}
         </tbody>
       </table>
     </div>

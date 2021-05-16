@@ -1,5 +1,4 @@
 import React, { useContext, useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 import { GlobalState } from "../../../GlobalState";
 import axios from "axios";
 import PaypalButton from "./PaypalButton";
