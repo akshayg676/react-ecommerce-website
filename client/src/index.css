@@ -50,5 +50,8 @@ button {
 /* -------------------------- Login -------------------------- */
 @import url("./components/mainpages/auth/login.css");
 
-/* -------------------------- cart -------------------------- */
+/* -------------------------- Cart -------------------------- */
 @import url("./components/mainpages/cart/cart.css");
+
+/* -------------------------- History -------------------------- */
+@import url("./components/mainpages/history/history.css");

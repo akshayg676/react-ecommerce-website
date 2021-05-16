@@ -36,7 +36,7 @@ const paymentCtrl = {
       });
 
       await newPayment.save();
-      res.json({ newPayment });
+      res.json({ msg: "Payment Success!" });
     } catch (err) {
       return res.status(500).json({ msg: err.message });
     }

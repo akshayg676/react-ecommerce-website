@@ -31,7 +31,6 @@ function Cart() {
   };
 
   const tranSuccess = async (payment) => {
-    console.log(payment);
     const { paymentID, address } = payment;
 
     await axios.post(
