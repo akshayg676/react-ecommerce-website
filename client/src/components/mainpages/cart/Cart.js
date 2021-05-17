@@ -7,6 +7,7 @@ function Cart() {
   const state = useContext(GlobalState);
   const [token] = state.token;
   const [cart, setCart] = state.userAPI.cart;
+  const [callback, setCallback] = state.userAPI.callback;
   const [total, setTotal] = useState(0);
 
   useEffect(() => {
@@ -41,6 +42,7 @@ function Cart() {
     setCart([]);
     addToCart([]);
     alert("You have successfully placed an order");
+    setCallback(!callback);
   };
 
   if (cart.length === 0)

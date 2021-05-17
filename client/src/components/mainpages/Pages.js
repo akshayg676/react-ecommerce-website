@@ -7,6 +7,7 @@ import Products from "./products/Products";
 import DetailProduct from "./detailProduct/DetailProduct";
 import NotFound from "./utils/NotFound";
 import OrderHistory from "./history/OrderHistory";
+import OrderDetails from "./history/OrderDetails";
 
 import { GlobalState } from "../../GlobalState";
 
@@ -27,6 +28,11 @@ function Pages() {
         path="/history"
         exact
         component={isLogged ? OrderHistory : NotFound}
+      />
+      <Route
+        path="/history/:id"
+        exact
+        component={isLogged ? OrderDetails : NotFound}
       />
       <Route path="/cart" exact component={Cart} />
       <Route path="*" exact component={NotFound} />
