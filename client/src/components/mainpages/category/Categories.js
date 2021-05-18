@@ -8,22 +8,44 @@ function Categories() {
   const [category, setCategory] = useState("");
   const [token] = state.token;
   const [callback, setCallback] = state.catagoriesAPI.callback;
+  const [onEdit, setOnEdit] = useState(false);
+  const [id, setId] = useState("");
 
   const createCategory = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post(
-        "/api/category",
-        { name: category },
-        {
-          headers: { Authorization: token },
-        }
-      );
+      if (onEdit) {
+        const res = await axios.put(
+          `/api/category/${id}`,
+          { name: category },
+          {
+            headers: { Authorization: token },
+          }
+        );
+        alert(res.data.msg);
+      } else {
+        const res = await axios.post(
+          "/api/category",
+          { name: category },
+          {
+            headers: { Authorization: token },
+          }
+        );
+        alert(res.data);
+      }
+
+      setOnEdit(false);
       setCategory("");
       setCallback(!callback);
     } catch (err) {
       alert(err.response.data.msg);
     }
+  };
+
+  const editCategory = async (id, name) => {
+    setId(id);
+    setCategory(name);
+    setOnEdit(true);
   };
 
   return (
@@ -42,7 +64,7 @@ function Categories() {
           type="submit"
           style={{ backgroundColor: "green", color: "#fff" }}
         >
-          Save
+          {onEdit ? "Update" : "Save"}
         </button>
       </form>
 
@@ -56,7 +78,10 @@ function Categories() {
               <div className="row" key={category._id}>
                 <p>{category.name}</p>
                 <div>
-                  <button style={{ backgroundColor: "skyblue", color: "#fff" }}>
+                  <button
+                    onClick={() => editCategory(category._id, category.name)}
+                    style={{ backgroundColor: "skyblue", color: "#fff" }}
+                  >
                     Edit
                   </button>
                   <button style={{ backgroundColor: "Crimson", color: "#fff" }}>
