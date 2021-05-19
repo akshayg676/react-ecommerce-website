@@ -14,7 +14,6 @@ function Header() {
 
   const logout = async () => {
     await axios.get("/user/logout");
-    localStorage.clear();
     window.location.href = "/";
   };
 

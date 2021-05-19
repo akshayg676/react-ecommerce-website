@@ -4,7 +4,7 @@ import axios from "axios";
 
 function Categories() {
   const state = useContext(GlobalState);
-  const [categories, setCategories] = state.catagoriesAPI.categories;
+  const [categories] = state.catagoriesAPI.categories;
   const [category, setCategory] = useState("");
   const [token] = state.token;
   const [callback, setCallback] = state.catagoriesAPI.callback;
@@ -50,11 +50,11 @@ function Categories() {
 
   const deleteCategory = async (id) => {
     try {
-      console.log(id);
       const res = await axios.delete(`/api/category/${id}`, {
         headers: { Authorization: token },
       });
       setCallback(!callback);
+      alert(res.data.msg);
     } catch (err) {
       alert(err.response.data.msg);
     }
