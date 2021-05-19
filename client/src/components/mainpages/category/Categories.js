@@ -48,6 +48,18 @@ function Categories() {
     setOnEdit(true);
   };
 
+  const deleteCategory = async (id) => {
+    try {
+      console.log(id);
+      const res = await axios.delete(`/api/category/${id}`, {
+        headers: { Authorization: token },
+      });
+      setCallback(!callback);
+    } catch (err) {
+      alert(err.response.data.msg);
+    }
+  };
+
   return (
     <div className="categories">
       <form onSubmit={createCategory}>
@@ -84,7 +96,10 @@ function Categories() {
                   >
                     Edit
                   </button>
-                  <button style={{ backgroundColor: "Crimson", color: "#fff" }}>
+                  <button
+                    onClick={() => deleteCategory(category._id)}
+                    style={{ backgroundColor: "Crimson", color: "#fff" }}
+                  >
                     Delete
                   </button>
                 </div>

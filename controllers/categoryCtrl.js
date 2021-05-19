@@ -26,7 +26,7 @@ const categoryCtrl = {
   },
   deleteCategory: async (req, res) => {
     try {
-      await Category.findOneAndDelete(req.params.id);
+      await Category.findOneAndDelete({ _id: req.params.id });
       res.json({ msg: " Deleted a Category" });
     } catch (err) {
       res.status(500).json({ msg: err.message });
