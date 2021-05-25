@@ -9,6 +9,7 @@ import NotFound from "./utils/NotFound";
 import OrderHistory from "./history/OrderHistory";
 import OrderDetails from "./history/OrderDetails";
 import Categories from "./category/Categories";
+import CreateProduct from "./createProduct/CreateProduct";
 
 import { GlobalState } from "../../GlobalState";
 
@@ -27,11 +28,18 @@ function Pages() {
         exact
         component={isLogged ? NotFound : Register}
       />
+
       <Route
         path="/category"
         exact
         component={isAdmin ? Categories : NotFound}
       />
+      <Route
+        path="/create_product"
+        exact
+        component={isAdmin ? CreateProduct : NotFound}
+      />
+
       <Route
         path="/history"
         exact

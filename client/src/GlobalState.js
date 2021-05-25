@@ -17,7 +17,7 @@ export const DataProvider = ({ children }) => {
 
       setTimeout(() => {
         refreshToken();
-      }, 15000);
+      }, 10 * 60 * 1000);
     };
     refreshToken();
   }, []);

@@ -76,7 +76,7 @@ function Categories() {
           type="submit"
           style={{ backgroundColor: "green", color: "#fff" }}
         >
-          {onEdit ? "Update" : "Save"}
+          {onEdit ? "Update" : "Create"}
         </button>
       </form>
 
