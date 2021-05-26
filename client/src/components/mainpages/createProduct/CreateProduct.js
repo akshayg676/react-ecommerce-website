@@ -54,6 +54,24 @@ function CreateProduct() {
     }
   };
 
+  const handleDelete = async () => {
+    try {
+      if (!isAdmin) return alert("You're not the Admin");
+      setLoading(true);
+      await axios.post(
+        "/api/destroy",
+        { public_id: images.public_id },
+        {
+          headers: { Authorization: token },
+        }
+      );
+      setLoading(false);
+      setImages(false);
+    } catch (err) {
+      alert(err.response.data.msg);
+    }
+  };
+
   const styleUpload = {
     display: images ? "block" : "none",
   };
@@ -63,12 +81,12 @@ function CreateProduct() {
         <input type="file" name="file" id="file_up" onChange={handleUpload} />
         {loading ? (
           <div id="file_img">
-            <h3>Uploading, Please wait . . .</h3>
+            <h3>Please wait . . .</h3>
           </div>
         ) : (
           <div id="file_img" style={styleUpload}>
             <img src={images ? images.url : ""} alt="" />
-            <span>X</span>
+            <span onClick={handleDelete}>X</span>
           </div>
         )}
       </div>
