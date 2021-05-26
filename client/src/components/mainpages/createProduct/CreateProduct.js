@@ -16,9 +16,43 @@ function CreateProduct() {
   const state = useContext(GlobalState);
   const [product, setProduct] = useState(initialState);
   const [categories] = state.catagoriesAPI.categories;
+  const [isAdmin] = state.userAPI.isAdmin;
+  const [token] = state.token;
   const [images, setImages] = useState(false);
   const [loading, setLoading] = useState(false);
   console.log(categories);
+
+  const handleUpload = async (e) => {
+    e.preventDefault();
+    try {
+      if (!isAdmin) return alert("You are noy Admin");
+
+      const file = e.target.files[0];
+
+      if (!file) return alert("File no exist");
+
+      if (file.size > 1024 * 1024) return alert("File size too large"); // 1mb
+
+      if (file.type !== "image/jpeg" && file.type !== "image/png")
+        return alert("Invalid File format");
+
+      let formData = new FormData();
+      formData.append("file", file);
+
+      setLoading(true);
+      const res = await axios.post("/api/upload", formData, {
+        headers: {
+          "content-type": "multipart/form-data",
+          Authorization: token,
+        },
+      });
+
+      setLoading(false);
+      setImages(res.data);
+    } catch (err) {
+      alert(err.response.data.msg);
+    }
+  };
 
   const styleUpload = {
     display: images ? "block" : "none",
@@ -26,11 +60,17 @@ function CreateProduct() {
   return (
     <div className="create_product">
       <div className="upload">
-        <input type="file" name="file" id="file_up" />
-        <div id="file_img" style={styleUpload}>
-          <img src="" alt="" />
-          <span>X</span>
-        </div>
+        <input type="file" name="file" id="file_up" onChange={handleUpload} />
+        {loading ? (
+          <div id="file_img">
+            <h3>Uploading, Please wait . . .</h3>
+          </div>
+        ) : (
+          <div id="file_img" style={styleUpload}>
+            <img src={images ? images.url : ""} alt="" />
+            <span>X</span>
+          </div>
+        )}
       </div>
 
       <form>
