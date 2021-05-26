@@ -2,6 +2,7 @@ import React, { useState, useContext } from "react";
 import axios from "axios";
 import { GlobalState } from "../../../GlobalState";
 import Loading from "../utils/loading/Loading";
+import { useHistory } from "react-router-dom";
 
 const initialState = {
   product_id: "",
@@ -18,9 +19,10 @@ function CreateProduct() {
   const [categories] = state.catagoriesAPI.categories;
   const [isAdmin] = state.userAPI.isAdmin;
   const [token] = state.token;
-  const [images, setImages] = useState(false);
+  const [image, setImage] = useState(false);
   const [loading, setLoading] = useState(false);
-  console.log(categories);
+
+  const history = useHistory();
 
   const handleUpload = async (e) => {
     e.preventDefault();
@@ -48,7 +50,7 @@ function CreateProduct() {
       });
 
       setLoading(false);
-      setImages(res.data);
+      setImage(res.data);
     } catch (err) {
       alert(err.response.data.msg);
     }
@@ -60,20 +62,46 @@ function CreateProduct() {
       setLoading(true);
       await axios.post(
         "/api/destroy",
-        { public_id: images.public_id },
+        { public_id: image.public_id },
         {
           headers: { Authorization: token },
         }
       );
       setLoading(false);
-      setImages(false);
+      setImage(false);
     } catch (err) {
       alert(err.response.data.msg);
     }
   };
 
+  const handleChangeInput = (e) => {
+    const { name, value } = e.target;
+    setProduct({ ...product, [name]: value });
+    console.log(product);
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      if (!isAdmin) return alert("You're not Admin");
+      if (!image) return alert("Select an Image");
+
+      await axios.post(
+        "/api/products",
+        { ...product, image },
+        {
+          headers: { Authorization: token },
+        }
+      );
+      setImage(false);
+      setProduct(initialState);
+      history.push("/");
+    } catch (err) {
+      alert(err.response.data.msg);
+    }
+  };
   const styleUpload = {
-    display: images ? "block" : "none",
+    display: image ? "block" : "none",
   };
   return (
     <div className="create_product">
@@ -85,13 +113,13 @@ function CreateProduct() {
           </div>
         ) : (
           <div id="file_img" style={styleUpload}>
-            <img src={images ? images.url : ""} alt="" />
+            <img src={image ? image.url : ""} alt="" />
             <span onClick={handleDelete}>X</span>
           </div>
         )}
       </div>
 
-      <form>
+      <form onSubmit={handleSubmit}>
         <div className="row">
           <label htmlFor="product_id">Product ID</label>
           <input
@@ -100,6 +128,7 @@ function CreateProduct() {
             id="product_id"
             required
             value={product.product_id}
+            onChange={handleChangeInput}
           />
         </div>
 
@@ -111,6 +140,7 @@ function CreateProduct() {
             id="title"
             required
             value={product.title}
+            onChange={handleChangeInput}
           />
         </div>
 
@@ -122,6 +152,7 @@ function CreateProduct() {
             id="price"
             required
             value={product.price}
+            onChange={handleChangeInput}
           />
         </div>
 
@@ -133,6 +164,7 @@ function CreateProduct() {
             id="description"
             required
             value={product.description}
+            onChange={handleChangeInput}
             rows="5"
           />
         </div>
@@ -145,13 +177,18 @@ function CreateProduct() {
             id="content"
             required
             value={product.content}
+            onChange={handleChangeInput}
             rows="7"
           />
         </div>
 
         <div className="row">
           <label htmlFor="categories">Categories: </label>
-          <select name="category" value={product.category}>
+          <select
+            name="category"
+            value={product.category}
+            onChange={handleChangeInput}
+          >
             <option value="">Please select a category</option>
             {categories.map((category) => (
               <option value={category._id} key={category._id}>
