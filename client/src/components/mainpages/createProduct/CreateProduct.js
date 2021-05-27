@@ -28,6 +28,7 @@ function CreateProduct() {
   const params = useParams();
 
   const [products] = state.productsAPI.products;
+  const [callback, setCallback] = state.productsAPI.callback;
 
   useEffect(() => {
     if (params.id) {
@@ -98,7 +99,6 @@ function CreateProduct() {
   const handleChangeInput = (e) => {
     const { name, value } = e.target;
     setProduct({ ...product, [name]: value });
-    console.log(product);
   };
 
   const handleSubmit = async (e) => {
@@ -125,8 +125,7 @@ function CreateProduct() {
         );
       }
 
-      setImage(false);
-      setProduct(initialState);
+      setCallback(!callback);
       history.push("/");
     } catch (err) {
       alert(err.response.data.msg);
