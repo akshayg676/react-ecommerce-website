@@ -7,6 +7,8 @@ function Products() {
   const state = useContext(GlobalState);
   const [products] = state.productsAPI.products;
   const [isAdmin] = state.userAPI.isAdmin;
+  const [token] = state.token;
+  const [callback, setCallback] = state.productsAPI.callback;
 
   return (
     <>
@@ -17,6 +19,9 @@ function Products() {
               key={product._id}
               product={product}
               isAdmin={isAdmin}
+              token={token}
+              callback={callback}
+              setCallback={setCallback}
             />
           );
         })}
