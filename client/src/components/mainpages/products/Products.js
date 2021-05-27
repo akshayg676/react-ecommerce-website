@@ -15,7 +15,7 @@ function Products() {
       setProducts(res.data.products);
     };
     getProducts();
-  }, []);
+  }, [setProducts]);
 
   return (
     <>

@@ -1,8 +1,8 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import axios from "axios";
 import { GlobalState } from "../../../GlobalState";
 import Loading from "../utils/loading/Loading";
-import { useHistory } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 
 const initialState = {
   product_id: "",
@@ -11,6 +11,7 @@ const initialState = {
   description: "",
   content: "",
   category: "",
+  _id: "",
 };
 
 function CreateProduct() {
@@ -21,8 +22,28 @@ function CreateProduct() {
   const [token] = state.token;
   const [image, setImage] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [edit, setEdit] = useState(false);
 
   const history = useHistory();
+  const params = useParams();
+
+  const [products] = state.productsAPI.products;
+
+  useEffect(() => {
+    if (params.id) {
+      products.forEach((product) => {
+        if (product._id === params.id) {
+          setEdit(true);
+          setProduct(product);
+          setImage(product.image);
+        }
+      });
+    } else {
+      setEdit(false);
+      setProduct(initialState);
+      setImage(false);
+    }
+  }, [params.id, products]);
 
   const handleUpload = async (e) => {
     e.preventDefault();
@@ -86,13 +107,24 @@ function CreateProduct() {
       if (!isAdmin) return alert("You're not Admin");
       if (!image) return alert("Select an Image");
 
-      await axios.post(
-        "/api/products",
-        { ...product, image },
-        {
-          headers: { Authorization: token },
-        }
-      );
+      if (edit) {
+        await axios.put(
+          `/api/products/${product._id}`,
+          { ...product, image },
+          {
+            headers: { Authorization: token },
+          }
+        );
+      } else {
+        await axios.post(
+          "/api/products",
+          { ...product, image },
+          {
+            headers: { Authorization: token },
+          }
+        );
+      }
+
       setImage(false);
       setProduct(initialState);
       history.push("/");
@@ -129,6 +161,7 @@ function CreateProduct() {
             required
             value={product.product_id}
             onChange={handleChangeInput}
+            disabled={edit}
           />
         </div>
 
@@ -202,7 +235,7 @@ function CreateProduct() {
           type="submit"
           style={{ backgroundColor: "green", color: "#fff" }}
         >
-          Create
+          {edit ? "Update" : "Create"}
         </button>
       </form>
     </div>
