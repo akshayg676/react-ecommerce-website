@@ -14,7 +14,11 @@ function BtnRender({ product, deleteProduct }) {
           <Link id="btn_view" to={`/edit_product/${product._id}`}>
             Edit
           </Link>
-          <Link id="btn_buy" to="#!" onClick={deleteProduct}>
+          <Link
+            id="btn_buy"
+            to="#!"
+            onClick={() => deleteProduct(product._id, product.image.public_id)}
+          >
             Delete
           </Link>
         </>

@@ -8,3 +8,24 @@
 
 /* -------------------------- Product-item -------------------------- */
 @import url("../utils/productItem/productItem.css");
+
+.delete-all {
+  text-align: right;
+  margin: 20px;
+}
+.delete-all input {
+  height: 25px;
+  width: 25px;
+  transform: translateY(5px);
+  margin: 0 1rem;
+}
+.delete-all span {
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+.delete-all button {
+  border: 1px solid crimson;
+  padding: 8px 15px;
+  color: crimson;
+  text-transform: uppercase;
+}
