@@ -53,6 +53,12 @@ function Products() {
     setIsCheck(!isCheck);
   };
 
+  const deleteAll = async () => {
+    products.forEach((product) => {
+      if (product.checked) deleteProduct(product._id, product.image.public_id);
+    });
+  };
+
   if (loading)
     return (
       <div className="products">
@@ -66,7 +72,7 @@ function Products() {
         <div className="delete-all">
           <span>Select all</span>
           <input type="checkbox" checked={isCheck} onChange={checkAll} />
-          <button>Delete all</button>
+          <button onClick={deleteAll}>Delete all</button>
         </div>
       )}
       <div className="products">
