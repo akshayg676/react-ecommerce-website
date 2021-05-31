@@ -10,9 +10,8 @@ function Filter() {
   const [search, setSearch] = state.productsAPI.search;
 
   const handleCategory = (e) => {
-    // e.preventDefault()
     setCategory(e.target.value);
-    console.log(category);
+    setSearch("");
   };
 
   return (
@@ -26,6 +25,28 @@ function Filter() {
               {category.name}
             </option>
           ))}
+        </select>
+      </div>
+
+      <input
+        type="text"
+        value={search}
+        placeholder="Search Products"
+        onChange={(e) => setSearch(e.target.value.toLocaleLowerCase())}
+      />
+
+      <div className="row">
+        <span>Sort By: </span>
+        <select
+          name="category"
+          value={sort}
+          onChange={(e) => setSort(e.target.value)}
+        >
+          <option value="">Latest</option>
+          <option value="sort=oldest">Oldest</option>
+          <option value="sort=-sold">Best Sales</option>
+          <option value="sort=-price">Price: High-Low</option>
+          <option value="sort=price">Price: Low-High</option>
         </select>
       </div>
     </div>
