@@ -4,6 +4,7 @@ import ProductItem from "../utils/productItem/ProductItem";
 import Loading from "../utils/loading/Loading";
 import axios from "axios";
 import Filter from "./Filter";
+import LoadMore from "./LoadMore";
 
 function Products() {
   const state = useContext(GlobalState);
@@ -90,6 +91,7 @@ function Products() {
           );
         })}
       </div>
+      <LoadMore />
       {products.length === 0 && <Loading />}
     </>
   );
