@@ -20,7 +20,7 @@ header .logo {
 }
 
 header a {
-  text-transform: uppercase;
+  text-transform: none;
   color: rebeccapurple;
 }
 header h1 {

@@ -35,7 +35,7 @@ function Filter() {
         onChange={(e) => setSearch(e.target.value.toLocaleLowerCase())}
       />
 
-      <div className="row">
+      <div className="row sort">
         <span>Sort By: </span>
         <select
           name="category"
