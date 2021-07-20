@@ -15,10 +15,10 @@ code {
 }
 /* -------------------------- App -------------------------- */
 .App {
-  max-width: 1230px; /*1230px*/
+  /* max-width: 1230px;  */
   min-height: 100vh;
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 0 2em;
   box-shadow: 0 0 35px #eee;
   background-color: whitesmoke;
 }

@@ -61,13 +61,25 @@ function Header() {
 
       <div className="logo">
         <h1>
-          <Link to="/">{isAdmin ? "ADMIN" : "Shopzy"}</Link>
+          <Link to="/">
+            {isAdmin ? (
+              "ADMIN"
+            ) : (
+              <img
+                className="logo1"
+                src="https://res.cloudinary.com/dsrs8h01h/image/upload/v1626785035/ecommerce/photo_2021-07-20_18-03-30-removebg-preview-min_mlvisp.png"
+                alt=""
+              />
+            )}
+          </Link>
         </h1>
       </div>
 
       <ul style={styleMenu}>
         <li>
-          <Link to="/">{isAdmin ? "Product" : "shop"}</Link>
+          <Link className="list" to="/">
+            {isAdmin ? "Product" : "Shop"}
+          </Link>
         </li>
 
         {isAdmin && adminRouter()}
@@ -75,7 +87,9 @@ function Header() {
           loggedRouter()
         ) : (
           <li>
-            <Link to="/login">Login / Register</Link>{" "}
+            <Link className="list" to="/login">
+              Login / Register
+            </Link>{" "}
           </li>
         )}
 
