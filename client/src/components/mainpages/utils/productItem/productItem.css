@@ -1,11 +1,14 @@
 .product_card {
-  max-width: 400px;
+  max-width: 350px;
   overflow: hidden;
   height: 500px;
   padding: 15px;
   box-shadow: 0 0 1rem #ddd;
-  margin: 10px 0;
+  margin: 20px 15px;
   position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
 }
 
 .product_card img {
@@ -30,7 +33,7 @@
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 3;
-  height: 4.5rem;
+  height: max-content;
   overflow: hidden;
   color: #323232;
 }
@@ -50,13 +53,17 @@
   font-weight: 600;
   letter-spacing: 2px;
   padding: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 #btn_view {
-  background: #9cebd5;
+  border: 1px solid #323232;
+  color: #323232;
   margin-right: 5px;
 }
 #btn_buy {
-  background-color: limegreen;
+  background-color: #323232;
   margin-left: 5px;
 }
 .product_card input {
