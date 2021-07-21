@@ -1,6 +1,6 @@
 .login-page {
   max-width: 500px;
-  border: 2px solid limegreen;
+  border: 2px solid #323232;
   border-radius: 20px;
   padding: 2rem;
   margin: 3.5rem auto;
@@ -18,8 +18,8 @@
   margin: 10px 0;
   height: 2.5rem;
   padding: 0 5px;
-  outline: limegreen;
-  border: 1px solid limegreen;
+  outline: #323232;
+  border: 1px solid #323232;
 
   border-radius: 20px;
   background: transparent;
@@ -41,13 +41,13 @@
 .login-page form button {
   max-width: 150px;
   color: #ffffff;
-  background-color: limegreen;
+  background-color: #323232;
   text-transform: uppercase;
   letter-spacing: 2px;
 }
 
 .login-page form a {
-  color: orange;
+  color: #323232;
   letter-spacing: 1.3px;
   text-transform: uppercase;
 }
