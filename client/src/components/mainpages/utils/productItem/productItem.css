@@ -33,7 +33,8 @@
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 3;
-  height: max-content;
+  height: 4em;
+  font-size: 0.9em;
   overflow: hidden;
   color: #323232;
 }
