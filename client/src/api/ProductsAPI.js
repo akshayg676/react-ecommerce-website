@@ -19,7 +19,6 @@ function ProductsAPI() {
       );
       setProducts(res.data.products);
       setResult(res.data.result);
-      console.log(res);
     };
     getProducts();
   }, [callback, category, sort, search, page]);

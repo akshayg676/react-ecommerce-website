@@ -4,7 +4,6 @@ import { GlobalState } from "../../../GlobalState";
 function Filter() {
   const state = useContext(GlobalState);
   const [categories] = state.catagoriesAPI.categories;
-  console.log(categories);
   const [category, setCategory] = state.productsAPI.category;
   const [sort, setSort] = state.productsAPI.sort;
   const [search, setSearch] = state.productsAPI.search;

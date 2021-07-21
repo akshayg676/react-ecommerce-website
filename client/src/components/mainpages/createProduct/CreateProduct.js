@@ -1,7 +1,7 @@
 import React, { useState, useContext, useEffect } from "react";
 import axios from "axios";
 import { GlobalState } from "../../../GlobalState";
-import Loading from "../utils/loading/Loading";
+// import Loading from "../utils/loading/Loading";
 import { useHistory, useParams } from "react-router-dom";
 
 const initialState = {

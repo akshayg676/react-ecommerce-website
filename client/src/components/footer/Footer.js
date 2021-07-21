@@ -1,5 +1,5 @@
 import "./footer.css";
-import { FaTelegram, FaCodepen, FaGlobe } from "react-icons/fa";
+import { FaCodepen, FaGlobe } from "react-icons/fa";
 import { GrLinkedin } from "react-icons/gr";
 import { GoMarkGithub } from "react-icons/go";
 import { MdEmail } from "react-icons/md";
@@ -12,8 +12,8 @@ const iconStyle = {
 function Footer() {
   return (
     <div className="footer">
-      <section class="social">
-        <div class="social-container">
+      <section className="social">
+        <div className="social-container">
           <a href="#">
             <FaGlobe style={iconStyle} />
           </a>

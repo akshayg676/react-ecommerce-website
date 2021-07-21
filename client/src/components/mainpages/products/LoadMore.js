@@ -5,8 +5,6 @@ function LoadMore() {
   const state = useContext(GlobalState);
   const [page, setPage] = state.productsAPI.page;
   const [result] = state.productsAPI.result;
-  console.log(result);
-  console.log(page);
 
   return (
     <div className="load_more">
