@@ -8,7 +8,7 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  margin: 4em 0;
+  margin: auto;
 }
 .social,
 .copyright {
@@ -18,6 +18,9 @@
 .social {
   font-size: 1.5em;
   color: black;
+}
+.copyright {
+  padding-bottom: 2em;
 }
 @media screen and (max-width: 400px) {
   .footer {

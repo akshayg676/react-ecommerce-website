@@ -23,10 +23,14 @@ function Header() {
     return (
       <>
         <li>
-          <Link to="/create_product">Create Product</Link>
+          <Link className="list" to="/create_product">
+            Create Product
+          </Link>
         </li>
         <li>
-          <Link to="/category">Categories</Link>
+          <Link className="list" to="/category">
+            Categories
+          </Link>
         </li>
       </>
     );
@@ -36,10 +40,12 @@ function Header() {
     return (
       <>
         <li>
-          <Link to="/history">History</Link>
+          <Link className="list" to="/history">
+            History
+          </Link>
         </li>
         <li>
-          <Link to="/" onClick={logout}>
+          <Link className="list" to="/" onClick={logout}>
             Logout
           </Link>
         </li>
