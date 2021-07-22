@@ -31,7 +31,7 @@
 }
 .box-detail h2 {
   text-transform: uppercase;
-  color: darkblue;
+  color: #323232;
   letter-spacing: 2px;
   font-weight: 2rem;
 }
@@ -42,7 +42,7 @@
   font-size: 0.7em;
 }
 .box-detail .cart {
-  background-color: limegreen;
+  background-color: #323232;
   color: whitesmoke;
   padding: 0.5rem 2rem;
   margin-top: 10px;
